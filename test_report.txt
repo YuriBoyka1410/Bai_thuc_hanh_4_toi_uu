@@ -1,0 +1,27 @@
+=== TEST REPORT ===
+
+Số lượng đơn hàng: 50
+
+Kiểm tra FOR:
+- Đã duyệt đủ 50 phần tử
+- Tổng doanh thu tính được: 12,450,000
+
+Kiểm tra WHILE:
+- Số tài xế khả dụng: 10
+- Đã phân bổ thành công 10 đơn đầu tiên
+- Vòng lặp dừng khi hết tài xế
+
+Kiểm tra DO-WHILE:
+Lần thử 1
+Lấy dữ liệu thất bại
+
+Lần thử 2
+Lấy dữ liệu thất bại
+
+Lần thử 3
+Lấy dữ liệu thành công
+
+Kết luận:
+✓ FOR duyệt toàn bộ dữ liệu
+✓ WHILE dừng đúng điều kiện
+✓ DO-WHILE thực hiện tối thiểu 1 lần và dừng khi thành công
