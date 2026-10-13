@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thực hành 4</title>
+  </head>
+  <body>
+    <script>
+      //Dữ liệu mẫu
+      let order_list = [
+        { id: 101, amount: 150000, status: "pending" },
+        { id: 102, amount: 200000, status: "pending" },
+        { id: 103, amount: 50000, status: "pending" },
+      ];
+
+      let driver_available = 2;
+
+      //Yêu cầu 1: Tính tổng doanh thu bằng FOR
+      function calculate_total(order) {
+        let total = 0;
+        for (let i = 0; i < order.length; i++) {
+          //Bỏ qua dữ liệu lỗi
+          if (!order[i] || order[i].amount <= 0) {
+            continue;
+          }
+          total += order[i].amount;
+        }
+        return total;
+      }
+      document.write("Tổng doanh thu: " + calculate_total(order_list) + "<br>");
+
+      //Yêu cầu: Phân bổ đơn hàng bằng While
+      function assign_orders(order, available_drivers) {
+        let index = 0;
+        while (available_drivers > 0 && index < order.length) {
+          order[index].status = "processing";
+          available_drivers--;
+          index++;
+        }
+        return order;
+      }
+      assign_orders(order_list, driver_available);
+      document.write(
+        "Danh sách đơn sau phân bổ: " + JSON.stringify(order_list),
+      );
+
+      //Yêu cầu 3: Retry bằng Do-while
+      function get_order_with_retry() {
+        let retry_count = 0;
+        let max_retry = 3;
+        let success = false;
+        let data = [];
+        do {
+          document.write("Lần thử: " + (retry_count + 1));
+          //Giả lập lấy dữ liệu
+          if (retry_count === 2) {
+            data = order_list;
+          }
+          if (data.length > 0) {
+            success = true;
+            document.write("Lấy dữ liệu thành công");
+          } else {
+            document.write("Lấy dữ liệu thất bại");
+          }
+          retry_count++;
+        } while (!success && retry_count < max_retry);
+        return data;
+      }
+      let result = get_order_with_retry();
+      document.write("Dữ liệu nhận được: " + JSON.stringify(result));
+    </script>
+  </body>
+</html>
